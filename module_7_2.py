@@ -11,16 +11,30 @@
 #
 ##
 import os
+from pprint import pprint
 ###
 def custom_write(file_name, strings) : #
-    pass
-    if not os.path.exists(file_name):  # если нет файла
+    if not os.path.exists(file_name) :  # если нет файла
         open(file_name, 'a').close()  # создаём
+    else :
+        open(file_name, 'w').close() # очистим файл
     name = file_name
-    file = open(name, 'r')
-    rfile = file.read()
-    file.close()  # закрывает его и возвращает единую строку со всеми
-    return rfile  # товарами из файла __file_name.
+    fstrings ='' # строки записи в файл
+    ns = 0  # № строки
+    keys = [] # ключи для strings_positions
+    values = [] # значения ключей для strings_positions
+    file = open(name, 'a', encoding = 'utf-8')
+    for string in strings :
+        ns += 1
+        ntell = str(file.tell())
+        file.write(string + ' \n')
+        fstrings += string + ' \n' # что запишется в файл в итоге
+        keys.append((ns, ntell)) #
+        values.append(string) #
+    strings_positions = dict(zip(keys, values))
+    file.close()  #
+    pprint(fstrings)
+    return strings_positions  # словарь из строк файла __file_name.
 ###
 ##
 #
@@ -33,26 +47,35 @@ def custom_write(file_name, strings) : #
 #
 # Пример результата выполнения программы:
 # Пример выполняемого кода:
-# info = [
-#     'Text for tell.',
-#     'Используйте кодировку utf-8.',
-#     'Because there are 2 languages!',
-#     'Спасибо!'
-#     ]
+info = [
+     'Text for tell.',
+     'Используйте кодировку utf-8.',
+     'Because there are 2 languages!',
+     'Спасибо!'
+     ]
 #
-# result = custom_write('test.txt', info)
-# for elem in result.items():
-#   print(elem)
+result = custom_write('test.txt', info)
+for elem in result.items():
+    print(elem)
 #
 # Вывод на консоль:
-# ((1, 0), 'Text for tell.')
-# ((2, 16), 'Используйте кодировку utf-8.')
-# ((3, 66), 'Because there are 2 languages!')
-# ((4, 98), 'Спасибо!')
-#
+## ((1, 0), 'Text for tell.')
+## ((2, 16), 'Используйте кодировку utf-8.')
+## ((3, 66), 'Because there are 2 languages!')
+## ((4, 98), 'Спасибо!')
+##
+# Вывод на консоль У МЕНЯ ТАК:
+# ((1, '0'), 'Text for tell.')
+# ((2, '17'), 'Используйте кодировку utf-8.')
+# ((3, '68'), 'Because there are 2 languages!')
+# ((4, '101'), 'Спасибо!')
+# потому-что перед \n стоит пробел (из общих соображений)
 #  Как выглядит файл после запуска:
 #   ВОТ ТАК
-
+# Text for tell.
+# Используйте кодировку utf-8.
+# Because there are 2 languages!
+# Спасибо!
 #
 #   конец задачи
 #
