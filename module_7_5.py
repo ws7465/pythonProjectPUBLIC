@@ -33,10 +33,10 @@ for root, dirs, files in os.walk(directory):
     print(f'files : {files}')
     for dir in dirs :
         for file in files:
-                filepath = os.path.join(root, dir)
-                filetime = os.path.getmtime(filepath)
+                filepath = os.path.join(root, dir, file)
+                filetime = os.path.getmtime(file)
                 formatted_time = time.ctime(filetime)
-                filesize = os.path.getsize(filepath)
+                filesize = os.path.getsize(file)
                 parent_dir = os.path.dirname(filepath)
                 pprint(f'Обнаружен файл: {file}, Путь: {filepath}, Размер: {filesize} байт, Время изменения:  {formatted_time}, Родительская директория: {parent_dir}')
 # ###
@@ -44,6 +44,8 @@ for root, dirs, files in os.walk(directory):
 # Так как в разных операционных системах разная схема расположения папок, тестировать проще всего в папке проекта (directory = “.”)
 # Пример возможного вывода:
 # Обнаружен файл: main.py, Путь: ./main.py, Размер: 111 байт, Время изменения: 11.11.1111 11:11,
+#
+#   конец задания
 #
 #   конец задания
 #
