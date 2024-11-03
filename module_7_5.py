@@ -26,27 +26,24 @@ import time
 import re
 from pprint import pprint
 #
-#directory = '.'
-directory = 'E:/rusoft.ru'
+directory = '.'
 for root, dirs, files in os.walk(directory):
-    #print(f'root : {root}')
-    #print(f'dirs : {dirs}')
-    #print(f'files : {files}')
-    for file in files:
-            filepath = os.path.join('E:/rusoft.ru/', 'Мультитул сисадмина Win 10 etc')
-            filetime = os.path.getmtime(filepath)
-            formatted_time = time.ctime(filetime)
-            filesize = os.path.getsize(filepath)
-            parent_dir = os.path.dirname(filepath)
-            pprint(f'Обнаружен файл: {file}, Путь: {filepath}, Размер: {filesize} байт, Время изменения:  {formatted_time}, Родительская директория: {parent_dir}')
+    print(f'root : {root}')
+    print(f'dirs : {dirs}')
+    print(f'files : {files}')
+    for dir in dirs :
+        for file in files:
+                filepath = os.path.join(root, dir)
+                filetime = os.path.getmtime(filepath)
+                formatted_time = time.ctime(filetime)
+                filesize = os.path.getsize(filepath)
+                parent_dir = os.path.dirname(filepath)
+                pprint(f'Обнаружен файл: {file}, Путь: {filepath}, Размер: {filesize} байт, Время изменения:  {formatted_time}, Родительская директория: {parent_dir}')
 # ###
 #
 # Так как в разных операционных системах разная схема расположения папок, тестировать проще всего в папке проекта (directory = “.”)
 # Пример возможного вывода:
 # Обнаружен файл: main.py, Путь: ./main.py, Размер: 111 байт, Время изменения: 11.11.1111 11:11,
-#
-#   конец задания
-#
 #
 #   конец задания
 #
