@@ -145,9 +145,6 @@ guests_names = [
 'Vitoria', 'Nikita', 'Galina', 'Pavel', 'Ilya', 'Alexandra'
 ]
 # Создание гостей
-#guest1 = Guest('Maria')
-#guest1.start()
-#guest1.join()
 guests = [Guest(name) for name in guests_names]
 # Заполнение кафе столами
 cafe = Cafe(*tables)
