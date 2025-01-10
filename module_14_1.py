@@ -66,8 +66,6 @@ cursor.execute('UPDATE Users SET balance = ? WHERE (id % 2) <> 0', (500,))
 
 cursor.execute('DELETE FROM Users WHERE id = 1 OR (id % 3) = 1')
 
-#UPDATE goods SET price = price / 2 WHERE price >= 100
-
 cursor.execute('SELECT username, email, age, balance FROM Users WHERE age <> ?', (60,))
 users = cursor.fetchall()
 for user in users :
