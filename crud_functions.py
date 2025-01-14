@@ -33,8 +33,8 @@ def get_all_products() :
 
     cursor.execute('SELECT id, title, description, price FROM Products')
     ids = cursor.fetchall()
-    for id in ids:
-        print(f'| Название : {id[1]} | Описание : {id[2]} | Цена : {id[3]} |')
+    #for id in ids:
+    #    print(f'| Название : {id[1]} | Описание : {id[2]} | Цена : {id[3]} |')
 
     connection.commit()
     connection.close()
